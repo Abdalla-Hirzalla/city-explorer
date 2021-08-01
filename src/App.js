@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Map from './map'
 
 
 class App extends React.Component {
@@ -14,8 +14,10 @@ class App extends React.Component {
       displayName: '',
       lon: '',
       lat: '',
-      errorMsg: 'bad response',
-      displayErr: false
+      errorMsg: 'Bad Response',
+      displayErr: false,
+      showMap: false,
+      showCard : false
     }
 
   }
@@ -38,15 +40,18 @@ class App extends React.Component {
         displayName: locationResult.data[0].display_name,
         lon: locationResult.data[0].lon,
         lat: locationResult.data[0].lat,
-        showMap: true
+        showMap: true,
+        displayErr: false,
+        showCard : true
       }
 
       )
     }
     catch {
       this.setState({
-        displayMap: false,
-        displayErr: true
+        showMap: false,
+        displayErr: true,
+        showCard : false
       }
       )
     }
@@ -60,15 +65,17 @@ class App extends React.Component {
           <input type='text' placeholder='Enter City' name='city' />
           <button type='submit'>Explore!</button>
         </form>
-        <div class="card" style={{ width: '22rem', border:'1px solid black ' , color:'green' }}>
-          <div class="card-header">
-           <h2> {this.state.displayName}</h2>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item" style={{border:'1px solid black ', color : 'tomato'}}><h6>{this.state.lon}</h6></li>
-            <li class="list-group-item" style={{border:'1px solid black ', color : 'tomato'}}><h6>{this.state.lat}</h6></li>
-          </ul>
-        </div>
+
+        <Map
+          displayName={this.state.displayName}
+          lon={this.state.lon}
+          lat={this.state.lat}
+          showMap={this.state.showMap}
+          displayErr={this.state.displayErr}
+          errorMsg={this.state.errorMsg}
+          showCard= {this.state.showCard}
+        />
+
       </>
 
     )
