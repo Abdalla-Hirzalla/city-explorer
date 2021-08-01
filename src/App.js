@@ -17,7 +17,7 @@ class App extends React.Component {
       errorMsg: 'Bad Response',
       displayErr: false,
       showMap: false,
-      showCard : false
+      showCard: false
     }
 
   }
@@ -42,7 +42,7 @@ class App extends React.Component {
         lat: locationResult.data[0].lat,
         showMap: true,
         displayErr: false,
-        showCard : true
+        showCard: true
       }
 
       )
@@ -51,7 +51,7 @@ class App extends React.Component {
       this.setState({
         showMap: false,
         displayErr: true,
-        showCard : false
+        showCard: false
       }
       )
     }
@@ -73,7 +73,7 @@ class App extends React.Component {
           showMap={this.state.showMap}
           displayErr={this.state.displayErr}
           errorMsg={this.state.errorMsg}
-          showCard= {this.state.showCard}
+          showCard={this.state.showCard}
         />
 
       </>

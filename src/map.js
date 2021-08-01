@@ -10,18 +10,18 @@ class Map extends React.Component {
         return (
 
             <>
-            {this.props.showCard &&
-                <div class="card" style={{ width: '22rem', border: '1px solid black ', color: 'green' }}>
-                    <div class="card-header">
-                        <h2> {this.props.displayName}</h2>
+                {this.props.showCard &&
+                    <div class="card" style={{ width: '22rem', border: '1px solid black ', color: 'green' }}>
+                        <div class="card-header">
+                            <h2> {this.props.displayName}</h2>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" style={{ border: '1px solid black ', color: 'tomato' }}>
+                                <h6>{this.props.lon}</h6></li>
+                            <li class="list-group-item" style={{ border: '1px solid black ', color: 'tomato' }}>
+                                <h6>{this.props.lat}</h6></li>
+                        </ul>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item" style={{ border: '1px solid black ', color: 'tomato' }}>
-                            <h6>{this.props.lon}</h6></li>
-                        <li class="list-group-item" style={{ border: '1px solid black ', color: 'tomato' }}>
-                            <h6>{this.props.lat}</h6></li>
-                    </ul>
-                </div>
                 }
                 {this.props.showMap &&
                     <div class="card" style={{ width: "30rem" }}>
