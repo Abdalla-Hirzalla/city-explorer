@@ -17,18 +17,30 @@ class App extends React.Component {
       errorMsg: 'Bad Response',
       displayErr: false,
       showMap: false,
-      showCard: false
+      showCard: false,
+      weatherInfoArr :'',
+
     }
 
   }
 
 
+  // getWeatherInfo = async () => {
+  //   let URL = `${process.env.REACT_APP_SERVER_URL}/weather?lat=a&lon=b&searchQuery=c`;
+  //   let weatherData = await axios.get(URL);
+  //   this.setState({
+  //     weatherInfoArr :weatherData.data
+  //   })
+  //    console.log(weatherData);
+  // }
+  
 
   getLocationData = async (event) => {
     event.preventDefault();
     let cityName = event.target.city.value;
     console.log(cityName);
     let URL = `https://eu1.locationiq.com/v1/search.php?key=pk.ee0d2cd26f602ebf960d34a59e1151dc&q=${cityName}&format=json`;
+
 
 
 
@@ -55,6 +67,13 @@ class App extends React.Component {
       }
       )
     }
+
+    let URL = `${process.env.REACT_APP_SERVER_URL}/weather?lat=a&lon=b&searchQuery=c`;
+    let weatherData = await axios.get(URL);
+    this.setState({
+      weatherInfoArr :weatherData.data
+    })
+     console.log(weatherData);
   }
   render() {
     return (
