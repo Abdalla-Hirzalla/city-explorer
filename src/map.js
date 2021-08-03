@@ -25,7 +25,7 @@ class Map extends React.Component {
                 }
                 {this.props.showMap &&
                     <div class="card" style={{ width: "30rem" }}>
-                        <img src={`https://maps.locationiq.com/v3/staticmap?key=pk.ee0d2cd26f602ebf960d34a59e1151dc&center=${this.props.lat},${this.props.lon}`} class="card-img-top" alt="map" />
+                        <img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_KEY}&center=${this.props.lat},${this.props.lon}`} class="card-img-top" alt="map" />
                         <div class="card-body">
                             <p class="card-text">
                                 {this.props.lon} , {this.props.lat}

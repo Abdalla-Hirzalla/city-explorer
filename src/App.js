@@ -3,7 +3,8 @@ import axios from 'axios';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Map from './map'
-
+import Weather from './Weather'
+import Movies from './Movies'
 
 class App extends React.Component {
 
@@ -18,29 +19,23 @@ class App extends React.Component {
       displayErr: false,
       showMap: false,
       showCard: false,
-      weatherInfoArr :'',
-
+      weather : [],
+      movies : []
     }
 
   }
 
 
-  // getWeatherInfo = async () => {
-  //   let URL = `${process.env.REACT_APP_SERVER_URL}/weather?lat=a&lon=b&searchQuery=c`;
-  //   let weatherData = await axios.get(URL);
-  //   this.setState({
-  //     weatherInfoArr :weatherData.data
-  //   })
-  //    console.log(weatherData);
-  // }
+ 
   
 
   getLocationData = async (event) => {
     event.preventDefault();
-    let cityName = event.target.city.value;
-    console.log(cityName);
-    let URL = `https://eu1.locationiq.com/v1/search.php?key=pk.ee0d2cd26f602ebf960d34a59e1151dc&q=${cityName}&format=json`;
-
+    const city = event.target.city.value;
+    
+    const URL = `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_KEY}&q=${city}&format=json`;
+    
+    
 
 
 
@@ -58,6 +53,16 @@ class App extends React.Component {
       }
 
       )
+const urlServer = `http://localhost:3011/getWeather?lat=${this.state.lat}&lon=${this.state.lon}&cityName=${city}`
+      let weatherResult = await axios.get(urlServer)
+      this.setState({
+        weather : weatherResult.data
+      })
+const urlMovies = `http:localhost:3011/movies?city=${city}`
+      let moviesResult = await axios.get(urlMovies)
+      this.setState({
+        movies : moviesResult.data
+      })
     }
     catch {
       this.setState({
@@ -68,7 +73,7 @@ class App extends React.Component {
       )
     }
 
-    let URL = `${process.env.REACT_APP_SERVER_URL}/weather?lat=a&lon=b&searchQuery=c`;
+    // let URL = `${process.env.REACT_APP_SERVER_URL}/weather?lat=a&lon=b&searchQuery=c`;
     let weatherData = await axios.get(URL);
     this.setState({
       weatherInfoArr :weatherData.data
@@ -93,8 +98,10 @@ class App extends React.Component {
           displayErr={this.state.displayErr}
           errorMsg={this.state.errorMsg}
           showCard={this.state.showCard}
-        />
 
+        />
+        <Weather showCard= {this.state.showCard} weather={this.state.weather} ></Weather>
+        <Movies showCard= {this.state.showCard} movies={this.state.movies} ></Movies>
       </>
 
     )
