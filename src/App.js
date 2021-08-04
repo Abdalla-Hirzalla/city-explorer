@@ -49,16 +49,17 @@ class App extends React.Component {
         lat: locationResult.data[0].lat,
         showMap: true,
         displayErr: false,
-        showCard: true
+       
       }
 
       )
 const urlServer = `http://localhost:3011/getWeather?lat=${this.state.lat}&lon=${this.state.lon}&cityName=${city}`
       let weatherResult = await axios.get(urlServer)
       this.setState({
-        weather : weatherResult.data
+        weather : weatherResult.data,
+        showCard: true
       })
-const urlMovies = `http:localhost:3011/movies?city=${city}`
+const urlMovies = `http://localhost:3011/movies?city=${city}`
       let moviesResult = await axios.get(urlMovies)
       this.setState({
         movies : moviesResult.data

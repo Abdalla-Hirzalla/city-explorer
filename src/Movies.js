@@ -17,9 +17,9 @@ class Movies extends React.Component {
                             <Card.Header as="h5">
                                 {element.title}
                             </Card.Header>
-                            {/* <Card.Header as="h5">
-                                 {process.env.img_url+element.poster_path}
-                            </Card.Header> */}
+                            <Card.Header as="h5">
+                            <img class="card-img-top" src={element.poster_path} alt="movies"/>
+                            </Card.Header>
                             <Card.Header as="h5">
                                 {element.vote_average}
                             </Card.Header>
