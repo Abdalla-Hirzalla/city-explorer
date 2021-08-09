@@ -53,13 +53,13 @@ class App extends React.Component {
       }
 
       )
-const urlServer = `http://localhost:3011/getWeather?lat=${this.state.lat}&lon=${this.state.lon}&cityName=${city}`
+const urlServer = `https://backendlab8.herokuapp.com/getWeather?lat=${this.state.lat}&lon=${this.state.lon}&cityName=${city}`
       let weatherResult = await axios.get(urlServer)
       this.setState({
         weather : weatherResult.data,
         showCard: true
       })
-const urlMovies = `http://localhost:3011/movies?city=${city}`
+const urlMovies = `https://backendlab8.herokuapp.com/movies?city=${city}`
       let moviesResult = await axios.get(urlMovies)
       this.setState({
         movies : moviesResult.data
